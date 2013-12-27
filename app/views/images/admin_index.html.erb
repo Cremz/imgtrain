@@ -1,0 +1,20 @@
+<h1>Admin Index</h1>
+    <% @images.each do |image| %>
+    <div class="row" id="image_<%= image.id %>">
+      <div class="large-8 columns">
+         <%= link_to (image_tag image.image_url(:medium)), image, class: "th" %>
+          <div class="panel"><p><%= image.title %></p></div>
+      </div>
+      <div class="large-4 columns">
+        <% if image.homepage %>
+          <%= link_to 'Homepage', homepage_toggle_path(image), remote: :true, class: 'toggle-home button radius tiny'%>
+        <% else %>
+          <%= link_to 'Homepage', homepage_toggle_path(image), remote: :true, class: 'toggle-home button radius tiny alert' %>
+        <% end %>
+        
+        <%= link_to '<i class="fi-x"></i>'.html_safe, image_path(image),
+              :confirm => 'Are you sure?', :method => :delete, remote: :true %>
+      </div>
+    </div>
+    <% end %>
+<br>

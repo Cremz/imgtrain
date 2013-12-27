@@ -1,0 +1,11 @@
+<h1>Listing images</h1>
+    <% @images.each do |image| %>
+    <div class="large-12 columns">
+    <img class="th" data-interchange="[<%= image.image_url(:medium) %>, (medium)], [<%= image.image_url(:medium) %>, (default)], [<%= image.image_url(:medium) %>, (large)], [<%= image.image_url(:small) %>, (small)]">
+       <noscript><%= link_to (image_tag image.image_url(:medium)), image, class: "th" %></noscript>
+        <div class="panel"><p><%= image.title %></p></div>
+    </div>
+    <% end %>
+<br>
+
+<%= foundation_paginate @posts %>
